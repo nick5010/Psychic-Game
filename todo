@@ -1,0 +1,18 @@
+1. Header psychic game
+
+2. guess what letter im thinking of
+    array of possible computer choices
+        computer needs to generate at random 
+        user choice needs to be compared to computer choice
+
+
+3. score 
+    win up when user guesses correctly
+        losses up when user doesn't guess correctly
+
+4. guesses left 
+    start at 9 guesses and go down once for each key pressed 
+    log what has been guessed and display it to the screen
+
+5. all of this needs to loop without refresh (no limit on score to end game)
+for loop

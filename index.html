@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Psychic Game</title>
+</head>
+
+<body>
+    <h1>Psychic Game</h1>
+    <p>Guess what letter I'm thinking of</p>
+    <p>Wins: <span id="wins"></span></p>
+    <p>Losses: <span id="losses"></span></p>
+    <p>Guesses left: <span id="guesses">9</span></p>
+    <p>Your guesses so far: <span id="alreadyGuessed"></span></p>
+
+    <script>
+        var guessesLeft = 9;
+        var win = 0;
+        var loss = 0;
+        var alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
+        var guessesSoFar = [];
+        var letterToGuess;
+        // generates number to guess
+        function rng() {
+            var num = Math.floor(Math.random() * Math.floor(alphabet.length));
+            letterToGuess = alphabet[num].toLowerCase();
+            console.log(letterToGuess)
+        }
+
+        // user choice
+        document.onkeyup = function (event) {
+            var userGuess = event.key.toLowerCase();
+
+            document.getElementById("alreadyGuessed").textContent = guessesSoFar.join(" ");
+            if (guessesSoFar.indexOf(userGuess) > -1) {
+                return
+            };
+
+            if (userGuess === letterToGuess) {
+                win++;
+                document.getElementById("wins").textContent = win;
+                guessesLeft = 9;
+                document.getElementById("guesses").textContent = guessesLeft;
+                guessesSoFar = [];
+                document.getElementById("alreadyGuessed").textContent = guessesSoFar;
+                rng();
+            } else {
+                guessesLeft--;
+                document.getElementById("guesses").textContent = guessesLeft;
+            }
+
+            if (guessesLeft === 0) {
+                loss++;
+                document.getElementById("losses").textContent = loss;
+                guessesLeft = 9;
+                document.getElementById("guesses").textContent = guessesLeft;
+                guessesSoFar = [];
+                document.getElementById("alreadyGuessed").textContent = guessesSoFar;
+                rng();
+            }
+            guessesSoFar.push(userGuess);
+        }
+        rng();
+    </script>
+</body>
+
+</html>
